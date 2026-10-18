@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+/* Design tokens — source of truth. Trust & precision, forest-green concept
+   (Ease-inspired): forest-green brand, mint tints, warm off-whites. Functional
+   amber/red/blue kept for legible status. Three-state theme (system/light/dark). */
+:root {
+  --bg:#FFFEFC; --surface:#FFFFFF; --surface-2:#EFEEEB; --border:#E5E7EB; --border-strong:#D4D7DB;
+  --ink:#1E2422; --ink-muted:#4C5450; --ink-subtle:#727A75;
+  --brand:#0F3E17; --brand-ink:#0A2C10; --brand-weak:#E1F4DF; --on-brand:#FFFFFF;
+  --ok:#1C724A; --ok-weak:#CFE7D3; --warn:#9A6410; --warn-weak:#FAEFD9;
+  --danger:#A62E26; --danger-weak:#F9E7E4; --info:#3A6B7D; --info-weak:#E6EFF2;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:#10150F; --surface:#171E15; --surface-2:#1E271C; --border:#2A3328; --border-strong:#3C4A38;
+    --ink:#E7EFE8; --ink-muted:#A9B6AC; --ink-subtle:#7C8A7E;
+    --brand:#8FCB9B; --brand-ink:#B1DBB8; --brand-weak:#13301A; --on-brand:#08140A;
+    --ok:#5FB487; --ok-weak:#12281C; --warn:#D39A41; --warn-weak:#2A2010;
+    --danger:#E07069; --danger-weak:#2B1513; --info:#7FB0C0; --info-weak:#122A31;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:#10150F; --surface:#171E15; --surface-2:#1E271C; --border:#2A3328; --border-strong:#3C4A38;
+  --ink:#E7EFE8; --ink-muted:#A9B6AC; --ink-subtle:#7C8A7E;
+  --brand:#8FCB9B; --brand-ink:#B1DBB8; --brand-weak:#13301A; --on-brand:#08140A;
+  --ok:#5FB487; --ok-weak:#12281C; --warn:#D39A41; --warn-weak:#2A2010;
+  --danger:#E07069; --danger-weak:#2B1513; --info:#7FB0C0; --info-weak:#122A31;
+  color-scheme: dark;
+}
+
+/* Map the live CSS variables into Tailwind v4 theme tokens (inline = reference,
+   so dark mode follows the variables). Enables bg-surface, text-ink-muted, etc. */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-subtle: var(--ink-subtle);
+  --color-brand: var(--brand);
+  --color-brand-ink: var(--brand-ink);
+  --color-brand-weak: var(--brand-weak);
+  --color-on-brand: var(--on-brand);
+  --color-ok: var(--ok);
+  --color-ok-weak: var(--ok-weak);
+  --color-warn: var(--warn);
+  --color-warn-weak: var(--warn-weak);
+  --color-danger: var(--danger);
+  --color-danger-weak: var(--danger-weak);
+  --color-info: var(--info);
+  --color-info-weak: var(--info-weak);
+  --font-ui: "Hanken Grotesk", system-ui, -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", monospace;
+  --radius-sm: 6px;
+  --radius: 10px;
+  --radius-lg: 14px;
+}
+
+html, body { margin: 0; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+.font-mono { font-variant-numeric: tabular-nums; }
+@keyframes sp { to { transform: rotate(360deg); } }
+.spin { animation: sp .7s linear infinite; }
+@media (prefers-reduced-motion: reduce) { .spin { animation: none; } }
+*:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
