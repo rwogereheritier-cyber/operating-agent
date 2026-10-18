@@ -36,11 +36,11 @@ function ActionStep({ n, title, status, children, action }) {
   const chip = { done: ['ok', 'Done'], active: ['brand', 'In progress'], awaiting: ['warn', 'Awaiting approval'], pending: ['neutral', 'Pending'] }[status];
   const badge = status === 'done' ? 'bg-ok text-white' : status === 'active' ? 'bg-brand text-on-brand' : status === 'awaiting' ? 'bg-warn text-white' : 'bg-surface-2 text-ink-muted';
   return (
-    <div className={`border border-border rounded-[14px] bg-surface p-4 ${status === 'pending' ? 'opacity-55' : ''}`}>
+    <div className={`border border-border rounded-[20px] bg-surface p-5 ${status === 'pending' ? 'opacity-55' : ''}`}>
       <div className="flex items-center justify-between gap-2.5">
         <div className="flex items-center gap-2.5">
-          <span className={`w-[22px] h-[22px] rounded-full grid place-items-center text-[11px] font-bold ${badge}`}>{status === 'done' ? '✓' : n}</span>
-          <span className="font-semibold text-[14px]">{title}</span>
+          <span className={`w-[24px] h-[24px] rounded-full grid place-items-center text-[11px] font-bold ${badge}`}>{status === 'done' ? '✓' : n}</span>
+          <span className="font-display text-[17px] tracking-[-0.01em]">{title}</span>
         </div>
         <StatusPill tone={chip[0]}>{chip[1]}</StatusPill>
       </div>

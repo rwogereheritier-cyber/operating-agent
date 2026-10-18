@@ -1,7 +1,7 @@
 // The design-system primitives. Trust & precision, built on the shared tokens.
 // Button, Field, Card, StatusPill, VerificationMarker, ApprovalPanel, DataTable.
 
-const btnBase = 'text-[13.5px] font-semibold cursor-pointer rounded-[6px] px-4 py-[9px] border border-transparent disabled:opacity-50 disabled:cursor-not-allowed transition-colors';
+const btnBase = 'inline-flex items-center justify-center gap-2 text-[14px] font-semibold cursor-pointer rounded-full px-5 py-2.5 border border-transparent disabled:opacity-50 disabled:cursor-not-allowed transition-colors';
 const btnVariants = {
   primary: 'bg-brand text-on-brand hover:bg-brand-ink',
   secondary: 'bg-surface text-ink border-border-strong hover:bg-surface-2',
@@ -30,11 +30,11 @@ export function Field({ label, hint, hintTone, missing, children, id }) {
 
 export function Card({ title, sub, right, className = '', children }) {
   return (
-    <div className={`bg-surface border border-border rounded-[14px] shadow-[0_1px_2px_rgba(20,28,38,0.05)] p-[18px] min-w-0 ${className}`}>
+    <div className={`bg-surface border border-border rounded-[20px] shadow-[0_1px_2px_rgba(20,28,38,0.04)] p-5 min-w-0 ${className}`}>
       {(title || right) && (
-        <div className="flex items-start justify-between gap-2.5 mb-3">
+        <div className="flex items-start justify-between gap-2.5 mb-3.5">
           <div>
-            {title && <div className="font-bold text-[15px]">{title}</div>}
+            {title && <div className="font-display text-[18px] tracking-[-0.01em]">{title}</div>}
             {sub && <div className="text-[12px] text-ink-subtle">{sub}</div>}
           </div>
           {right}

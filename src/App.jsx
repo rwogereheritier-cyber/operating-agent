@@ -61,7 +61,7 @@ export default function App() {
         SIMULATED PROTOTYPE · supplier responses and sending are mocked and clearly labelled · no real action is performed
       </div>
       <nav className="sticky top-0 z-10 bg-surface border-b border-border flex items-center gap-3.5 px-4 py-2.5">
-        <div className="flex items-center gap-2.5 font-bold tracking-[-0.02em]"><span className="w-[22px] h-[22px] rounded-[6px] bg-brand inline-block" /> Operating Agent</div>
+        <div className="flex items-center gap-2.5 font-display text-[18px] tracking-[-0.01em]"><span className="w-[22px] h-[22px] rounded-[7px] bg-brand inline-block" /> Operating Agent</div>
         <div className="flex gap-1 ml-1.5" role="tablist">
           {[['workspace', 'Request Workspace'], ['components', 'Components']].map(([id, label]) => (
             <button key={id} role="tab" aria-selected={tab === id} onClick={() => setTab(id)}
@@ -70,7 +70,15 @@ export default function App() {
         </div>
         <div className="ml-auto"><ThemeToggle /></div>
       </nav>
-      <div className="max-w-[1120px] mx-auto px-4 py-5 pb-16">
+      {tab === 'workspace' && (
+        <div className="bg-brand-weak">
+          <div className="max-w-[1120px] mx-auto px-6 py-12">
+            <h1 className="font-display text-[clamp(30px,5vw,44px)] leading-[1.05] tracking-[-0.015em] text-brand max-w-[16ch]">Fewer clicks. Every deal under control.</h1>
+            <p className="text-ink-muted mt-4 max-w-[54ch] text-[15px] leading-relaxed">The operator's cockpit — turn a messy enquiry into a verified, approved offer. Nothing invented, and nothing sent without you.</p>
+          </div>
+        </div>
+      )}
+      <div className="max-w-[1120px] mx-auto px-6 py-8 pb-16">
         {tab === 'workspace' ? <WorkspaceView /> : <Showcase />}
       </div>
     </div>
