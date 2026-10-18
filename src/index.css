@@ -1,41 +1,54 @@
 @import "tailwindcss";
 
-/* Design tokens — source of truth. Trust & precision, forest-green concept
-   (Ease-inspired): forest-green brand, mint tints, warm off-whites. Functional
-   amber/red/blue kept for legible status. Three-state theme (system/light/dark). */
+/* Operating Agent — dark design system.
+   Premium, restrained (Linear precision / Vercel minimalism / Raycast productivity).
+   Single dark theme. Indigo brand + cyan accent, used sparingly. No glows, no
+   gradients — depth comes from layered surfaces and hairline borders. */
 :root {
-  --bg:#FFFEFC; --surface:#FFFFFF; --surface-2:#EFEEEB; --border:#E5E7EB; --border-strong:#D4D7DB;
-  --ink:#1E2422; --ink-muted:#4C5450; --ink-subtle:#727A75;
-  --brand:#0F3E17; --brand-ink:#0A2C10; --brand-weak:#E1F4DF; --on-brand:#FFFFFF;
-  --ok:#1C724A; --ok-weak:#CFE7D3; --warn:#9A6410; --warn-weak:#FAEFD9;
-  --danger:#A62E26; --danger-weak:#F9E7E4; --info:#3A6B7D; --info-weak:#E6EFF2;
-  color-scheme: light;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg:#10150F; --surface:#171E15; --surface-2:#1E271C; --border:#2A3328; --border-strong:#3C4A38;
-    --ink:#E7EFE8; --ink-muted:#A9B6AC; --ink-subtle:#7C8A7E;
-    --brand:#8FCB9B; --brand-ink:#B1DBB8; --brand-weak:#13301A; --on-brand:#08140A;
-    --ok:#5FB487; --ok-weak:#12281C; --warn:#D39A41; --warn-weak:#2A2010;
-    --danger:#E07069; --danger-weak:#2B1513; --info:#7FB0C0; --info-weak:#122A31;
-    color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --bg:#10150F; --surface:#171E15; --surface-2:#1E271C; --border:#2A3328; --border-strong:#3C4A38;
-  --ink:#E7EFE8; --ink-muted:#A9B6AC; --ink-subtle:#7C8A7E;
-  --brand:#8FCB9B; --brand-ink:#B1DBB8; --brand-weak:#13301A; --on-brand:#08140A;
-  --ok:#5FB487; --ok-weak:#12281C; --warn:#D39A41; --warn-weak:#2A2010;
-  --danger:#E07069; --danger-weak:#2B1513; --info:#7FB0C0; --info-weak:#122A31;
+  /* surfaces */
+  --bg: #050505;
+  --surface: #0F1115;
+  --surface-2: #161A20;      /* elevated card */
+  --surface-3: #1C2128;      /* hover / inset */
+  --border: #292D35;         /* subtle border */
+  --border-strong: #3A3F49;
+  /* text */
+  --ink: #FFFFFF;            /* primary */
+  --ink-muted: #94A3B8;      /* secondary */
+  --ink-subtle: #5C6675;     /* tertiary / de-emphasized */
+  /* brand (indigo) — #6366F1 is #4F46E5 tuned one step lighter for AA text contrast on dark */
+  --brand: #6366F1;
+  --brand-ink: #818CF8;      /* hover / lighter */
+  --brand-weak: #1C1B38;     /* subtle indigo tint */
+  --on-brand: #FFFFFF;
+  /* accent (cyan) — highlights only, never a status */
+  --accent: #06B6D4;
+  --accent-weak: #08242C;
+  /* status */
+  --ok: #34D399;   --ok-weak: #0C241C;
+  --warn: #FBBF24; --warn-weak: #271E07;
+  --danger: #F87171; --danger-weak: #2A1214;
+  --info: #38BDF8; --info-weak: #0A2230;
+  /* focus */
+  --ring: #818CF8;
+  /* radii — tight and precise */
+  --radius-sm: 6px; --radius: 8px; --radius-lg: 10px; --radius-xl: 12px; --radius-2xl: 16px;
+  /* elevation — subtle, used sparingly (dialogs/popovers only) */
+  --shadow: 0 1px 2px rgba(0,0,0,.5);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,.6);
+  /* type */
+  --font-ui: "Hanken Grotesk", system-ui, -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", monospace;
+  --font-display: var(--font-ui);  /* no serif in this system */
   color-scheme: dark;
 }
 
-/* Map the live CSS variables into Tailwind v4 theme tokens (inline = reference,
-   so dark mode follows the variables). Enables bg-surface, text-ink-muted, etc. */
+/* Map tokens into Tailwind v4 (inline = reference the live variables). */
 @theme inline {
   --color-bg: var(--bg);
   --color-surface: var(--surface);
   --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
   --color-border: var(--border);
   --color-border-strong: var(--border-strong);
   --color-ink: var(--ink);
@@ -45,22 +58,17 @@
   --color-brand-ink: var(--brand-ink);
   --color-brand-weak: var(--brand-weak);
   --color-on-brand: var(--on-brand);
-  --color-ok: var(--ok);
-  --color-ok-weak: var(--ok-weak);
-  --color-warn: var(--warn);
-  --color-warn-weak: var(--warn-weak);
-  --color-danger: var(--danger);
-  --color-danger-weak: var(--danger-weak);
-  --color-info: var(--info);
-  --color-info-weak: var(--info-weak);
+  --color-accent: var(--accent);
+  --color-accent-weak: var(--accent-weak);
+  --color-ok: var(--ok); --color-ok-weak: var(--ok-weak);
+  --color-warn: var(--warn); --color-warn-weak: var(--warn-weak);
+  --color-danger: var(--danger); --color-danger-weak: var(--danger-weak);
+  --color-info: var(--info); --color-info-weak: var(--info-weak);
+  --color-ring: var(--ring);
   --font-ui: "Hanken Grotesk", system-ui, -apple-system, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", monospace;
-  --font-display: "Fraunces", "Hanken Grotesk", Georgia, serif;
-  --radius-sm: 6px;
-  --radius: 10px;
-  --radius-lg: 14px;
-  --radius-xl: 18px;
-  --radius-2xl: 24px;
+  --font-display: var(--font-ui);
+  --radius-sm: 6px; --radius: 8px; --radius-lg: 10px; --radius-xl: 12px; --radius-2xl: 16px;
 }
 
 html, body { margin: 0; }
@@ -76,4 +84,4 @@ body {
 @keyframes sp { to { transform: rotate(360deg); } }
 .spin { animation: sp .7s linear infinite; }
 @media (prefers-reduced-motion: reduce) { .spin { animation: none; } }
-*:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+*:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }

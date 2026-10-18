@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, StatusPill, VerificationMarker, DataTable } from './components/ui.jsx';
+import { Button, StatusPill, VerificationMarker, DataTable, EmptyState } from './components/ui.jsx';
 import { Icon } from './components/icons.jsx';
 import WorkspaceView from './features/RequestWorkspace.jsx';
 import Dashboard from './features/Dashboard.jsx';
@@ -47,12 +47,7 @@ function NavList({ current, onSelect, orientation }) {
 }
 
 function Placeholder({ title }) {
-  return (
-    <div className="bg-surface border border-border rounded-[20px] p-8 text-center">
-      <div className="font-display text-[18px] tracking-[-0.01em]">{title} — on the build roadmap</div>
-      <p className="text-ink-muted text-[13.5px] mt-2 max-w-[46ch] mx-auto">The live, end-to-end flow is in <strong>Requests</strong>. This section is scaffolded for the next build increment.</p>
-    </div>
-  );
+  return <EmptyState title={`${title} — on the build roadmap`} body={<>The live, end-to-end flow is in <strong>Requests</strong>. This section is scaffolded for the next build increment.</>} />;
 }
 
 function Showcase() {
