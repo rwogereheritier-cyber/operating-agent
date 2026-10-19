@@ -7,6 +7,9 @@ const paths = {
   followups: 'M12 8v4l3 2M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z',
   audit: 'M8 6h12M8 12h12M8 18h12M3.5 6h.01M3.5 12h.01M3.5 18h.01',
   components: 'M12 2l9 5-9 5-9-5zM3 12l9 5 9-5M3 17l9 5 9-5',
+  menu: 'M3 6h18M3 12h18M3 18h18',
+  close: 'M6 6l12 12M18 6L6 18',
+  chevron: 'M9 6l6 6-6 6',
 };
 export function Icon({ name, className = 'w-[18px] h-[18px]' }) {
   return (
